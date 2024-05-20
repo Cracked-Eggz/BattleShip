@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/game.css"/>
+    <title>海战</title>
+
+</head>
+<body>
+    <div id="gameApp">
+        <p>欢迎来到海战（复古战列舰）！ 这个小游戏的作者是: <strong>{{authorName}}</strong>.</p>
+
+        <!-- Manual buttons for control-->
+        <p>
+            <button type="button" v-on:click="newGame()">
+                新游戏
+            </button>
+        </p>
+
+        <!-- Game state -->
+        <p v-if="game != null">
+            第 {{game.gameNumber}} 局: 敌方得分: {{game.opponentPoints}}/{{game.maxPoints}}
+            &nbsp&nbsp&nbsp
+            {{game.numActiveOpponentForts}} 艘敌方战舰生还!</p>
+        <p v-else>
+            目前并无游戏正在进行; 尝试创建一局新游戏?
+        </p>
+
+        <!-- Last Opponent Points -->
+        <div v-if="game != null && game.lastOpponentPoints.length > 0">
+            <p>上回合敌方得分</p>
+            <ul>
+                <li v-for="(point, idx) in game.lastOpponentPoints">
+                    敌方{{idx+1}}开炮, 得 {{point}} 分
+                </li>
+            </ul>
+        </div>
+
+        <!-- Board -->
+        <div v-if="board != null">
+            <table>
+                <tr v-for="(row, rowIdx) in board.cellStates">
+                    <td v-for="(cellDescription, colIdx) in row">
+                        <div style="position: relative; left:0; top:0;" v-on:click="clickCell(rowIdx, colIdx)">
+
+                            <!-- Sprites: stack them on top of each other using relative position -->
+                            <img src="res/field.png" alt="No image"/>
+                            <img v-bind:src="'res/' + cellDescription + '.png'" class="stack" alt="No image"/>
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Won / loss -->
+            <h1 v-if="game.isGameWon">盛大胜利! 恭喜将军凯旋而归!</h1>
+            <h1 v-if="game.isGameLost">全灭。。。 下次加油?</h1>
+
+            <!-- Buttons for testing
+            <h2>Testing API Error Handling</h2>
+            <p>
+                <button type="button" v-on:click="getBadGame()">
+                    Test: Bad Game
+                </button>
+                <button type="button" v-on:click="getBadBoard()">
+                    Test: Bad Board
+                </button>
+                <button type="button" v-on:click="doBadCheat()">
+                    Test: Bad Cheat
+                </button>
+                <button type="button" v-on:click="doBadMove()">
+                    Test: Bad Move
+                </button>
+            </p>
+            -->
+        </div>
+    </div>
+
+    <script src="scripts/game.js"></script>
+</body>

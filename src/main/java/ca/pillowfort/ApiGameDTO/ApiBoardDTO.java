@@ -2,8 +2,6 @@ package ca.pillowfort.ApiGameDTO;
 
 import ca.pillowfort.model.Board;
 
-import java.sql.Array;
-
 /**
  * DTO class for the REST API to define object structures required by the front-end.
  * HINT: Create static factory methods (or constructors) which help create this object

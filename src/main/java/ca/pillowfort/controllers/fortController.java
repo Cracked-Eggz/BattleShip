@@ -41,7 +41,7 @@ public class fortController {
         return ResponseEntity.status(HttpStatus.CREATED).body(apiGameDTO);
     }
 
-    @GetMapping("api/games/{id}")
+    @GetMapping("/api/games/{id}")
     public ApiGameDTO getGame(@PathVariable("id") long gameId) {
         if (gameId > games.size()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
@@ -55,7 +55,7 @@ public class fortController {
         throw new IllegalArgumentException();
     }
 
-    @GetMapping("api/games/{id}/board")
+    @GetMapping("/api/games/{id}/board")
     public ApiBoardDTO getOneBoard(@PathVariable("id") long gameId) {
         if (gameId > games.size()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");

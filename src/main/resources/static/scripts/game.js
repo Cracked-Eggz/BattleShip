@@ -38,7 +38,7 @@ $(document).ready(function() {
 });
 
 function loadAbout() {
-    axios.get('/api/about', {})
+    axios.get('api/about', {})
         .then(function (response) {
             console.log("GET About returned:", response);
             myAppObj.authorName = response.data;
@@ -65,7 +65,7 @@ function makeNewGame() {
 }
 
 function loadGame() {
-    axios.get('/api/games/' + myAppObj.game.gameNumber, {})
+    axios.get('api/games/' + myAppObj.game.gameNumber, {})
       .then(function (response) {
         console.log("Load game returned:", response);
         myAppObj.game = response.data;
@@ -77,7 +77,7 @@ function loadGame() {
       });
 }
 function loadGameBoard() {
-    axios.get('/api/games/' + myAppObj.game.gameNumber + "/board", {})
+    axios.get('api/games/' + myAppObj.game.gameNumber + "/board", {})
       .then(function (response) {
         console.log("Load Board returned: ", response);
         myAppObj.board = response.data;
@@ -90,7 +90,7 @@ function loadGameBoard() {
 }
 
 function sendShowAll() {
-    axios.post('/api/games/' + myAppObj.game.gameNumber + "/cheatstate", "SHOW_ALL", plainTextConfig)
+    axios.post('api/games/' + myAppObj.game.gameNumber + "/cheatstate", "SHOW_ALL", plainTextConfig)
         .then(function (response) {
             console.log("Cheat returned: ", response);
             loadGameBoard();
@@ -112,7 +112,7 @@ function sendClick(rowIdx, colIdx) {
 
     let body = {row: rowIdx, col: colIdx}
 
-    axios.post('/api/games/' + myAppObj.game.gameNumber + "/moves", body)
+    axios.post('api/games/' + myAppObj.game.gameNumber + "/moves", body)
         .then(function (response) {
             console.log("POST /moves:", response);
             loadGameBoard();
@@ -136,7 +136,7 @@ function testGetBadGame() {
     testErrorHandling(
         "Test Get Bad Game",
         "GET",
-        '/api/games/' + 2352523,
+        'api/games/' + 2352523,
         "",
         404);
 }
@@ -144,7 +144,7 @@ function testGetBadBoard() {
     testErrorHandling(
         "Test Get Bad Board",
         "GET",
-        '/api/games/' + 2352523 + "/board",
+        'api/games/' + 2352523 + "/board",
         "",
         404);
 }
@@ -152,32 +152,32 @@ function testDoBadCheat() {
     testErrorHandling(
         "Test Cheat on bad game",
         "POST",
-        '/api/games/' + 2352523 + "/cheatstate",
+        'api/games/' + 2352523 + "/cheatstate",
         "1_CHEESE",
         404);
 
     testErrorHandling(
         "Test Bad cheat command",
         "POST",
-        '/api/games/' + myAppObj.game.gameNumber + "/cheatstate",
+        'api/games/' + myAppObj.game.gameNumber + "/cheatstate",
         "NoSuchCheat",
         400);
 }
 function testDoBadMove() {
     testErrorHandlingJsonPost(
         "Test Move on bad game",
-        '/api/games/' + 235235 + "/moves",
+        'api/games/' + 235235 + "/moves",
         3,3,   // row/col
         404);
 
     testErrorHandlingJsonPost(
         "Test Bad Move (row < 0)",
-        '/api/games/' + myAppObj.game.gameNumber + "/moves",
+        'api/games/' + myAppObj.game.gameNumber + "/moves",
         -1,3,   // row/col
         400);
     testErrorHandlingJsonPost(
         "Test Bad Move (col >9)",
-        '/api/games/' + myAppObj.game.gameNumber + "/moves",
+        'api/games/' + myAppObj.game.gameNumber + "/moves",
         3,10,   // row/col
         400);
 }

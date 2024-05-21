@@ -1,4 +1,4 @@
-package ca.pillowfort.model;
+package com.battleship.battleship.model;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;

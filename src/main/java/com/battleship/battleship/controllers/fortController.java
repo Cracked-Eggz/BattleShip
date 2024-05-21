@@ -1,7 +1,7 @@
-package ca.pillowfort.controllers;
+package com.battleship.battleship.controllers;
 
-import ca.pillowfort.ApiGameDTO.*;
-import ca.pillowfort.model.*;
+import com.battleship.battleship.ApiGameDTO.*;
+import com.battleship.battleship.model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

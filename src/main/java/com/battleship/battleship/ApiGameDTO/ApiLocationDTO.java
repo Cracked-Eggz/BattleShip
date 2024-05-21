@@ -1,4 +1,4 @@
-package ca.pillowfort.ApiGameDTO;
+package com.battleship.battleship.ApiGameDTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

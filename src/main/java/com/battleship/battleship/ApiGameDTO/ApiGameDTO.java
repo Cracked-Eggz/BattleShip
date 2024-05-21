@@ -1,6 +1,6 @@
-package ca.pillowfort.ApiGameDTO;
+package com.battleship.battleship.ApiGameDTO;
 
-import ca.pillowfort.model.Board;
+import com.battleship.battleship.model.Board;
 
 /**
  * DTO class for the REST API to define object structures required by the front-end.

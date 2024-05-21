@@ -1,4 +1,4 @@
-package ca.pillowfort.model;
+package com.battleship.battleship.model;
 
 /**
  * The cell class keeps track of the current state of each cell in a 2D array.

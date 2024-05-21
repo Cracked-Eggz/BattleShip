@@ -51,7 +51,7 @@ function loadAbout() {
 }
 
 function makeNewGame() {
-    axios.post('api/games', {})
+    axios.post('/api/games', {})
         .then(function (response) {
             console.log("POST new game returned:", response);
             myAppObj.game = response.data;

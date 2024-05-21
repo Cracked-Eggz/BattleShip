@@ -40,8 +40,8 @@
         </div>
 
         <!-- Won / loss -->
-        <h1 v-if="game.isGameWon">盛大胜利! 恭喜将军凯旋而归!</h1>
-        <h1 v-if="game.isGameLost">全灭。。。 下次加油?</h1>
+        <h1 v-if="game && game.isGameWon">盛大胜利! 恭喜将军凯旋而归!</h1>
+        <h1 v-if="game && game.isGameLost">全灭。。。 下次加油?</h1>
 
         <!-- Board -->
         <div v-if="board != null">

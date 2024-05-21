@@ -16,12 +16,12 @@ public class fortController {
     private List<Board> games = new ArrayList<>();
     private AtomicLong nextId = new AtomicLong();
 
-    @GetMapping("api/about")
+    @GetMapping("/api/about")
     public String getAuthorName() {
         return "陈亮 + 陈登";
     }
 
-    @GetMapping("api/games")
+    @GetMapping("/api/games")
     public List<ApiGameDTO> getAllGames() {
         List<ApiGameDTO> ApiGameDTOs = new ArrayList<>();
         for (Board game : games) {
@@ -30,7 +30,7 @@ public class fortController {
         return ApiGameDTOs;
     }
 
-    @PostMapping("api/games")
+    @PostMapping("/api/games")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ApiGameDTO> createNewGame() {
         Board game = new Board(5); // Assuming you're creating a new Board with a default size
@@ -41,7 +41,7 @@ public class fortController {
         return ResponseEntity.status(HttpStatus.CREATED).body(apiGameDTO);
     }
 
-    @GetMapping("api/games/{id}")
+    @GetMapping("/api/games/{id}")
     public ApiGameDTO getGame(@PathVariable("id") long gameId) {
         if (gameId > games.size()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
@@ -55,7 +55,7 @@ public class fortController {
         throw new IllegalArgumentException();
     }
 
-    @GetMapping("api/games/{id}/board")
+    @GetMapping("/api/games/{id}/board")
     public ApiBoardDTO getOneBoard(@PathVariable("id") long gameId) {
         if (gameId > games.size()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
@@ -69,7 +69,7 @@ public class fortController {
         throw new IllegalArgumentException();
     }
 
-    @PostMapping("api/games/{id}/moves")
+    @PostMapping("/api/games/{id}/moves")
     public ResponseEntity<?> makeMove(@PathVariable("id") long gameId, @RequestBody ApiLocationDTO apiLocationDTO) {
         if (gameId > games.size()) {
             return ResponseEntity.notFound().build();
@@ -95,7 +95,7 @@ public class fortController {
         return row < 0 || row > 9 || col < 0 || col > 9;
     }
 
-    @PostMapping("api/games/{id}/cheatstate")
+    @PostMapping("/api/games/{id}/cheatstate")
     public ResponseEntity<?> cheat(@PathVariable("id") long gameId, @RequestBody String cheatString) {
         if (gameId > games.size()) {
             return ResponseEntity.notFound().build();

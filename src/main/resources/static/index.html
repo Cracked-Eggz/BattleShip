@@ -5,7 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/game.css"/>
+    <link rel="stylesheet" type="text/css" href="css/test.css"/>
     <title>海战</title>
 
 </head>
@@ -44,7 +44,7 @@
         <h1 v-if="game && game.isGameLost">全灭。。。 下次加油?</h1>
 
         <!-- Board -->
-        <div v-if="board != null">
+        <div v-if="board != null" id="board">
             <table>
                 <tr v-for="(row, rowIdx) in board.cellStates">
                     <td v-for="(cellDescription, colIdx) in row">

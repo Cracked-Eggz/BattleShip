@@ -11,6 +11,8 @@ const myAppObj = new Vue({
 
     methods: {
         newGame: makeNewGame,
+        info: showInfo,
+        rules: showRules,
         cheatShowAll: sendShowAll,
 
         // Testing error handling
@@ -48,6 +50,22 @@ function loadAbout() {
         .catch(function (error) {
             console.log("GET About ERROR:", error);
         });
+}
+
+function showInfo() {
+    alert("在这个回合制的炮击小游戏里，你是一艘被敌军包围的战列舰，\n\n" +
+        "为了生存，你需要在敌方击沉你之前找到并击毁所有敌军！\n\n" +
+        "我们得到情报，在这片 10x10 的海域里一共会有五艘敌方战舰出没。\n\n" +
+        "它们以五格一艘的规模共占领了二十五个区域，且每一艘敌舰所占据的区域都是相连的。"
+    );
+}
+
+function showRules() {
+    alert("每回合你可以以鼠标点击方式开炮轰击一个区域，每当出现红色标志代表你命中敌舰，\n\n" +
+        "而若是出现烟雾的话，根据“有烟无伤”定律，这一炮将会和敌方擦肩而过。\n\n" +
+        "紧接着，存活敌舰会趁着你填装的空窗期向你开炮，并且它们未被击毁的船体越多，它们将会对你发射更多炮弹：\n\n" +
+        "5格：-20生命值，4格：-10生命值，三格：-5生命值，两格：-2生命值，一格：-1生命值"
+    );
 }
 
 function makeNewGame() {
@@ -225,4 +243,5 @@ function alertOnWrongStatus(description, expectedStatus, actualStatus) {
     }
 }
 
-
+showInfo();
+showRules();

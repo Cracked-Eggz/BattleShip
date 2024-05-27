@@ -13,18 +13,22 @@
     <div id="gameApp">
         <br>
         <p>欢迎来到海战！ 这个小游戏的作者是: <strong>{{authorName}}</strong>.</p>
-
+        
         <!-- Manual buttons for control-->
         <p>
-            <button type="button" v-on:click="info()">
-                情报
-            </button>
-            <button type="button" v-on:click="rules()">
-                规则
-            </button>
-            <button type="button" v-on:click="newGame()">
-                新游戏
-            </button>
+            <div v-on:click="info()" class="popup" id="myPopUp1">
+                <h5>情报</h5>
+                <span class="popuptext" id="myPopUpText1" onblur="self.close();">huh</span>
+            </div>
+            
+            <div v-on:click="rules()" class="popup"  id="myPopUp2">
+                <h5>规则</h5>
+                <span class="popuptext" id="myPopUpText2" onblur="self.close();">huh</span>
+            </div>
+            
+            <div v-on:click="newGame()" class="popup">
+                <h5>新游戏</h5>
+            </div>
         </p>
 
         <!-- Game state -->

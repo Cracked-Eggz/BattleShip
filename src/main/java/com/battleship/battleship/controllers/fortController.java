@@ -18,7 +18,7 @@ public class fortController {
 
     @GetMapping("/api/about")
     public String getAuthorName() {
-        return "陈亮 + 陈登";
+        return "陈亮 和 陈登";
     }
 
     @GetMapping("/api/games")
